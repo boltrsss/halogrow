@@ -21,11 +21,15 @@
    });
 
 
-   $("b")
-  .not("footer a, .button, .cert")
-  .click(function () {
-     $("html, body").animate({
-        scrollTop: $("#scroll").offset().top - 20,
-     }, 800);
+   $('a[href^="#"]')
+  .not('.wheel-button, footer a, .button, .cert')
+  .on('click', function (e) {
+    e.preventDefault();
+    const targetId = this.getAttribute("href");
+    const target = document.querySelector(targetId);
+    if (!target) return;
+    const top = $(target).offset().top - 20;
+    $('html, body').animate({ scrollTop: top }, 800);
   });
+
 
